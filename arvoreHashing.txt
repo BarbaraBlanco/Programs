@@ -1,0 +1,21 @@
+Tabela Hash:
+
+Objetivo: Resolver colisões em uma tabela hash usando árvores.
+Cada índice da tabela hash (ou bucket) armazena uma estrutura de árvore ao invés de uma lista simples.
+Estrutura:
+Usamos uma função hash para determinar o bucket correspondente.
+Se houver colisão, armazenamos as chaves colididas em uma árvore binária de busca (BST) ou em uma 
+estrutura balanceada, como uma Árvore AVL.
+Benefício:
+A busca no bucket é mais rápida que uma lista encadeada (O(log n) para árvores balanceadas vs. 
+O(n) para listas).
+
++---+---------+
+| 0 | (BST -> [15, 20, 25]) |
+| 1 | NULL    |
+| 2 | (BST -> [30, 35])     |
++---+---------+
+
+As chaves 15, 20, e 25 colidiram e foram organizadas como uma árvore no bucket 0.
+As chaves 30 e 35 colidiram no bucket 2.
+

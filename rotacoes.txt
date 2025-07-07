@@ -1,0 +1,568 @@
+Para Arvores AVL, existem 4 tipos de rotacao:
+
+Rotacao a esquerda
+
+    A                    B
+     \                  / \
+      B       ->       A   C
+       \
+        C
+
+A rotação simples à esquerda é o oposto da rotação simples à direita. Ela ocorre 
+quando a árvore está desbalanceada à direita e o fator de balanceamento do filho 
+direito também indica desbalanceamento à direita.
+
+Rotacao a direita
+
+      C                 B
+     /                 / \
+    B      ->         A   C
+   /
+  A
+
+A rotação simples à direita ocorre quando temos uma árvore desbalanceada à esquerda 
+(ou seja, o fator de balanceamento é 2 ou -2) e o filho esquerdo do nó raiz também 
+tem um fator de balanceamento que indica desbalanceamento à esquerda.
+
+Rotacao DUPLA a esquerda
+
+      A                   A                   B
+       \                   \                 / \
+        C       ->          B      ->       A   C
+       /                     \
+      B                       C
+
+A rotação dupla à esquerda ocorre quando a árvore está desbalanceada à direita, 
+e o filho direito do nó raiz está desbalanceado à esquerda. Neste caso, fazemos 
+uma rotação simples à direita no filho direito e, em seguida, uma rotação simples 
+à esquerda no nó raiz.
+
+Rotacao DUPLA a direita
+
+      C                  C                  B
+     /                  /                  / \
+    A        ->        B       ->         A   C
+     \                /
+      B              A
+
+A rotação dupla à direita ocorre quando temos uma árvore desbalanceada à esquerda, 
+mas o filho esquerdo do nó raiz está desbalanceado à direita. Neste caso, primeiro 
+realizamos uma rotação simples à esquerda no filho esquerdo, e em seguida uma rotação 
+simples à direita no nó raiz.
+
+****************************************************************************************************************************************************
+
+* Calcule Q = R - L
+
+SE -1 <= Q <= 1 ---> Arvore equilibrada
+
+SE Q > 1:
+
+SE a sub-arvore da direita tem Q < 0
+    Rotacao DUPLA a esquerda
+
+SENAO
+    Rotacao a esquerda
+
+SENAO, SE a sub-arvore da esquerda tem Q > 0
+    Rotacao DUPLA a direita
+SENAO
+    Rotacao a direita
+
+****************************************************************************************************************************************************
+
+PARA CALCULAR o fator de balanceamento.
+
+FB = ALTURA da sub-arvore esquerda - ALTURA da sub-arvore direita
+
+         A          2 niveis a direita, 0 a esquerda, entao = 0 - 2 = -2
+          \
+           B        1 nivel a direita, 0 a esquerda, entao: 0 - 1 = -1
+            \
+             C      no folha, balanceamento 0
+
+        Arvore desbalanceada a partir de = 1 <= Q <= -1
+                Tolerancia de desbalanceamento: -1, 0, 1
+        
+        Quando a arvore possui um FB (Fator balanceamento) NEGATIVO e MENOR que -1, ela vai tender para a direita
+        Quando a arvore possui um FB POSITIVO e MAIOR que 1, ela vai tender para a esquerda
+
+* Toda vez que temos um fator balanceamento (FB) NEGATIVO, devemos checar o filho 
+da DIREITA do no desbalanceado
+
+    Exemplo: [15, 27, 49, 10, 8, 67, 59, 9, 13, 20, 14]
+
+              A              15             FB = 0 - 2 = -2 (desbalanceamento)
+               \               \
+                B      ->       27          FB = 0 - 1 = -1
+                 \                \
+                  C                49       FB = 0
+
+Usando a rotacao RSE (Rotacao simples para a esquerda):
+
+    A                    B
+     \                  / \
+      B       ->       A   C
+       \
+        C
+
+    15                     27
+      \                   /  \
+       27       ->       15  49
+        \
+         49
+
+SEGUINDO:
+
+Exemplo: [15, 27, 49, 10, 8, 67, 59, 9, 13, 20, 14]
+
+            27               FB de 27 = +2
+            / \
+          15   49            FB de 15 = +2
+         /
+       10
+      /
+     8
+
+Usando a rotacao RSD (Rotacao simples para a direita):
+
+      C                 B
+     /                 / \
+    B      ->         A   C
+   /
+  A
+
+      27                27
+     /                 /  \
+    15      ->        10   49
+   /                 /  \
+  10                8    15
+ /
+8
+
+SEGUINDO:
+
+Exemplo: [15, 27, 49, 10, 8, 67, 59, 9, 13, 20, 14]
+
+              27
+             /  \
+            10   49
+          /   \    \
+         8     15   67
+                   /
+                 59
+
+Proximo desequilibrio na arvore:
+
+            27
+          /    \
+        10      49     ->     O no 49 apresenta um desequilibrio na arvore,
+      /   \       \         pois possui 2 nós a sua direita (67 e 59)
+    8      15     67        e nenhum no em sua esquerda, ficando:
+                 /                          0 - 2 = -2
+               59           e ao checar o flho da direita do nó desbalanceado
+                            chegamos ao nó 67, que por sua vez é positivo +1
+                    pois possui um filho a sua esquerda (59), e nenhum a sua 
+                    direita, ficando:       1 - 0  = 1
+
+        A situacao seguinte envolvendo os elementos 49, 67 e 59, tendendo 
+para a direita, pode ser facilmente resolvida com a 
+
+RSD, Rotacao simples para a direita
+
+      C                 B
+     /                 / \
+    B      ->         A   C
+   /
+  A
+
+       27               
+      /  \          
+    10    49           
+   /  \     \
+  8   15     59
+               \
+                67
+
+RDE, Rotacao Dupla para a Esquerda:
+
+
+      A                   A                   B
+       \                   \                 / \
+        C       ->          B      ->       A   C
+       /                     \
+      B                       C
+
+     49                   49                  59
+       \                   \                 /  \
+        67       ->         59      ->      49  67
+       /                     \
+      59                      67
+
+Ficando assim:
+
+          27
+        /    \
+      10      59
+     /  \    /  \
+    8   15  49   67
+
+Seguindo:
+
+Exemplo: [15, 27, 49, 10, 8, 67, 59, 9, 13, 20, 14]
+
+           27           Nivel 27 desbalanceado, pois possui 4 niveis a esquerda
+         /   \          e 2 niveis a direita, ficando:
+        /     \               4 - 2 = +2
+      10       59           positivo, entao devemos olhar os nos da esquerda
+     /   \    /   \       para detectar o desbalanceamento e aplicar a 
+    8     15 49    67     rotacao mais eficiente
+     \   /  \
+      9 13  20
+          \
+           14
+
+RDD, Rotacao dupla para a direita
+(Rotacao simples a esquerda + rotacao simples a direita)
+
+A rotacao simples a esquerda servira para transformar os nos 27, 10 e 15 em uma RETA 
+A rotacao simples a direita para resolver o problema de desbalanceamento da arvore.
+
+Rotacao dupla a direita:
+(anti-horario)
+
+      C                  C                  B
+     /                  /                  / \
+    A        ->        B       ->         A   C
+     \                /
+      B              A
+
+* O no 10 vai tomar o lugar do no 13, assim o 13 ira passar a ser filho do 10.
+
+Exemplo: [15, 27, 49, 10, 8, 67, 59, 9, 13, 20, 14]
+
+antes:
+           27    
+         /   \       
+        /     \            
+      10       59           
+     /   \    /   \       
+    8     15 49    67     
+     \   /  \
+      9 13  20
+          \
+           14
+
+depois:
+RSE (10, 15)
+
+           27    
+         /   \       
+        /     \            
+      15       59           
+     /   \    /   \       
+    10    20 49    67     
+   /  \      
+  8    13    
+   \     \     
+    9     14
+
+Agora, aplicamos o RSD, a rotacao simples a direita com 27 e 15
+* Rotacao em sentido horario
+
+Ficando, finalmente:
+
+           15         
+        /      \            
+      10        27           
+     /   \    /   \       
+    8     13 20    59     
+     \     \      /  \
+      9     14   49   67
+
+Zero niveis de desbalanceamento.
+
+Exemplo: [15, 27, 49, 10, 8, 67, 59, 9, 13, 20, 14]
+
+****************************************************************************************************************************************************
+
+Exemplo de aplicacao de um codigo em C de arvore AVL e suas rotacoes.
+
+Exemplo 1: Rotação à Direita
+
+
+// Rotacao a direita: Usada para balancear a arvore quando o fator de balanceamento da subarvore esquerda e 2 (desbalanceada a esquerda)
+
+Produto* rotacao_direita(Produto *y) {
+    Produto *x = y->esq;     // O no da esquerda se torna a nova raiz
+    Produto *T2 = x->dir;    // O filho direito de x e movido para o filho esquerdo de y
+
+    // Realiza a rotacao
+    x->dir = y;              // A subarvore de y (filho direito) passa a ser a subarvore esquerda de x
+    y->esq = T2;             // O filho direito de x (se houver) passa a ser o filho esquerdo de y
+
+    // Atualiza as alturas
+    atualizar_altura(y);  // A altura de y precisa ser recalculada apos a rotacao
+    atualizar_altura(x);  // A altura de x tambem e recalculada apos a rotacao
+
+    return x;  // Retorna o novo no raiz (x)
+}
+
+Arvore antes da rotacao:
+
+      30
+     /
+    20
+   /
+  10
+
+ou: 
+
+      y
+     /
+    x
+   /
+  T2
+
+No contexto:
+
+y é o nó desbalanceado, que possui um fator de balanceamento de 2 (desbalanceado à esquerda).
+x é o filho esquerdo de y e se tornará a nova raiz da subárvore após a rotação.
+T2 é o filho direito de x, que será realocado como o filho esquerdo de y.
+
+
+A árvore acima está desbalanceada à esquerda do nó 30, com um fator de balanceamento de 2 
+(altura da subárvore esquerda é maior que a direita por 2).
+
+* Aplicando a rotacao a direita de 30: (ou em y)
+
+    20
+   /  \
+  10   30
+
+ou: 
+
+    x
+   / \
+  T2  y
+
+Após a rotação:
+
+x se torna a nova raiz.
+y se torna o filho direito de x.
+T2, que era o filho direito de x, agora é o filho esquerdo de y.
+
+O nó 20 se torna a nova raiz, enquanto 30 é movido para a direita de 20 e 10 permanece à esquerda.
+
+****************************************************************************************************************************************************
+
+Exemplo 2: Rotação à Esquerda
+
+
+// Rotacao a esquerda: Usada para balancear a arvore quando o fator de balanceamento da subarvore direita e -2 (desbalanceada a direita)
+
+Produto* rotacao_esquerda(Produto *x) {
+    Produto *y = x->dir;    // O no da direita se torna a nova raiz
+    Produto *T2 = y->esq;   // O filho esquerdo de y e movido para o filho direito de x
+
+    // Realiza a rotacao
+    y->esq = x;             // A subarvore de x (filho esquerdo) passa a ser a subarvore direita de y
+    x->dir = T2;            // O filho esquerdo de y (se houver) passa a ser o filho direito de x
+
+    // Atualiza as alturas
+    atualizar_altura(x);  // A altura de x precisa ser recalculada apos a rotacao
+    atualizar_altura(y);  // A altura de y tambem e recalculada apos a rotacao
+
+    return y;  // Retorna o novo no raiz (y)
+}
+
+Arvore antes da rotacao:
+
+  10
+    \
+     20
+       \
+        30
+
+ou:
+
+  x
+   \
+    y
+     \
+      T2
+
+No contexto:
+
+x é o nó desbalanceado com fator de balanceamento de -2 (desbalanceado à direita).
+y é o filho direito de x e se tornará a nova raiz da subárvore após a rotação.
+T2 é o filho esquerdo de y, que será realocado como o filho direito de x.
+
+Esta árvore está desbalanceada à direita do nó 10, com um fator de balanceamento de -2.
+
+Aplicando a rotação à esquerda em 10: (ou em x)
+
+    20
+   /  \
+  10   30
+
+ou:
+
+    y
+   / \
+  x   T2
+
+Após a rotação:
+
+y se torna a nova raiz.
+x se torna o filho esquerdo de y.
+T2, que era o filho esquerdo de y, agora é o filho direito de x.
+
+
+Aqui, o nó 20 se torna a nova raiz, enquanto 10 é movido para a esquerda de 20 e 30 permanece à direita.
+
+
+****************************************************************************************************************************************************
+
+Exemplo 3: Rotação Esquerda-Direita
+
+
+// Rotacao dupla a esquerda-direita: Caso em que a subarvore esquerda de um no esta desbalanceada a direita
+
+Produto* rotacao_esquerda_direita(Produto *z) {
+    z->esq = rotacao_esquerda(z->esq);  // Primeiramente, realiza uma rotacao a esquerda na subarvore esquerda
+    return rotacao_direita(z);          // Depois, realiza a rotacao a direita no no z
+}
+
+Arvore antes da rotacao:
+
+    30
+   /
+  10
+    \
+     20
+
+ou:
+
+    z
+   /
+  y
+   \
+    x
+
+No contexto:
+
+z é o nó desbalanceado com fator de balanceamento de 2 (desbalanceado à esquerda).
+y é o filho esquerdo de z, cuja subárvore direita está desbalanceada.
+x é o filho direito de y.
+
+Neste caso, a subárvore esquerda de 30 (nó 10) está desbalanceada à direita.
+
+Aplicando a rotacao esquerda em 10: (ou em y)
+
+    30
+   /
+  20
+ /
+10
+
+ou:
+
+    z
+   /
+  x
+ /
+y
+
+
+Aplicando a rotacao direita em 30: (ou em z)
+
+    20
+   /  \
+  10   30
+
+ou:
+
+    x
+   / \
+  y   z
+
+Após as rotações:
+
+x se torna a nova raiz.
+y e z se tornam os filhos esquerdo e direito de x, respectivamente.
+
+O nó 20 se torna a nova raiz, e os nós 10 e 30 são balanceados como filhos esquerdo e direito, respectivamente.
+
+
+****************************************************************************************************************************************************
+
+Exemplo 4: Rotação Direita-Esquerda
+
+
+// Rotacao dupla a direita-esquerda: Caso em que a subarvore direita de um no esta desbalanceada a esquerda
+
+Produto* rotacao_direita_esquerda(Produto *z) {
+    z->dir = rotacao_direita(z->dir);   // Primeiramente, realiza uma rotacao a direita na subarvore direita
+    return rotacao_esquerda(z);         // Depois, realiza a rotacao a esquerda no no z
+}
+
+Arvore antes da rotacao:
+
+  10
+    \
+     30
+    /
+   20
+
+ou:
+
+  x
+   \
+    z
+   /
+  y
+
+No contexto:
+
+x é o nó desbalanceado com fator de balanceamento de -2 (desbalanceado à direita).
+z é o filho direito de x, cuja subárvore esquerda está desbalanceada.
+y é o filho esquerdo de z.
+
+Aqui, a subárvore direita de 10 (nó 30) está desbalanceada à esquerda.
+
+Aplicamos a rotacao direita em 30 (ou em z)
+
+  10
+    \
+     20
+       \
+        30
+
+ou:
+
+  x
+   \
+    y
+     \
+      z
+
+
+Aplicamos a rotacao esquerda em 10 (ou em x)
+
+    20
+   /  \
+  10   30
+
+ou:
+
+    y
+   / \
+  x   z
+
+Após as rotações:
+
+y se torna a nova raiz.
+x e z se tornam os filhos esquerdo e direito de y, respectivamente.
+
+Após as rotações, o nó 20 se torna a nova raiz com 10 à esquerda e 30 à direita.

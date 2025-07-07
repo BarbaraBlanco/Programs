@@ -1,0 +1,47 @@
+ARVORE 2-3-4
+
+Imagine uma árvore 2-3-4 onde estamos inserindo valores e dividindo nós conforme necessário:
+
+                 [10]
+                /    \
+              [5]   [20, 30]
+
+ARVORE VERMELHO-PRETO
+
+Árvores Vermelho-Preto são uma implementação prática de árvores 2-3-4 em uma estrutura binária, 
+onde cada nó é rotulado como vermelho ou preto. Essas árvores se aproximam do comportamento de uma 
+árvore 2-3-4 sem que cada nó contenha múltiplos valores.
+
+As regras de uma árvore Vermelho-Preto garantem o balanceamento, permitindo que todas as operações 
+mantenham complexidade logarítmica. As principais regras para uma árvore Vermelho-Preto são:
+
+Cada nó é vermelho ou preto.
+
+A raiz é sempre preta.
+
+Nó vermelho não pode ter filhos vermelhos (não pode haver dois nós vermelhos consecutivos em um caminho).
+
+Todo caminho da raiz até uma folha tem o mesmo número de nós pretos.
+
+Exemplo Visual:
+
+Abaixo está uma árvore Vermelho-Preto balanceada, onde as cores seguem as regras:
+
+                    [10(BLACK)]
+                    /    \
+                [5(RED)]  [20(BLACK)]
+                            \
+                            [30(RED)]
+
+
+Relação entre Árvores 2-3-4 e Árvores Vermelho-Preto
+As árvores Vermelho-Preto podem ser vistas como uma representação binária das árvores 2-3-4, onde:
+
+Um nó 2 em uma árvore 2-3-4 equivale a um nó preto único em uma árvore Vermelho-Preto.
+
+Um nó 3 em uma árvore 2-3-4 equivale a uma estrutura onde um nó preto tem um filho vermelho na árvore Vermelho-Preto.
+
+Um nó 4 em uma árvore 2-3-4 se torna uma estrutura onde um nó preto tem dois filhos vermelhos.
+
+Essas estruturas e regras tornam as árvores Vermelho-Preto eficientes para implementações de árvores 2-3-4 na prática, 
+mantendo o balanceamento e as operações em tempo logarítmico.
