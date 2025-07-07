@@ -1,0 +1,34 @@
+1)     Crie um programa em C que realiza o produto escalar de dois vetores de números reais. O programa deve solicitar ao usuário o tamanho dos vetores e os elementos de cada vetor. Em seguida, o programa deve calcular o produto escalar dos dois vetores e exibir o resultado. O programa deve exibir os vetores de entrada e o resultado do produto escalar. 
+
+2)     Desenvolva um programa em linguagem C que realiza a multiplicação de duas matrizes. O programa deve solicitar ao usuário as dimensões das matrizes (número de linhas e colunas) e os elementos de cada matriz. Em seguida, o programa deve calcular o produto das duas matrizes e exibir a matriz resultante. 
+
+3)     Crie um programa em C que utilize ponteiros para realizar operações em uma matriz. O programa deve realizar as seguintes tarefas: 
+
+Preencher uma matriz M com valores fornecidos pelo usuário. 
+Exibir a matriz M. 
+Calcular a transposta da matriz M e armazenar o resultado em uma nova matriz N. 
+Exibir a matriz transposta N. 
+4)     Desenvolva um programa em C que utiliza funções e ponteiros para realizar a multiplicação de duas matrizes. O programa deve seguir a estrutura a seguir: 
+
+Crie uma função para preencher uma matriz A com valores fornecidos pelo usuário. 
+Crie uma função para preencher uma matriz B com valores fornecidos pelo usuário. 
+Crie uma função para exibir uma matriz A. 
+Crie uma função para exibir uma matriz B. 
+Crie uma função que realiza a multiplicação de duas matrizes (A×B) e armazena o resultado em uma terceira matriz C. 
+Crie uma função para exibir a matriz resultante C. 
+Utilize ponteiros para passar as matrizes entre as funções. 
+
+5)     Crie um programa em C que utiliza structs para representar informações de alunos. O programa deve realizar as seguintes tarefas: 
+
+Defina uma struct Aluno que contenha os seguintes campos: nome (string), idade (inteiro), nota1 (float) e nota2 (float). 
+Crie uma função para preencher as informações de um aluno. A função deve receber um ponteiro para a struct Aluno como parâmetro e solicitar ao usuário que insira os dados do aluno. 
+Crie uma função para calcular a média das notas de um aluno. A função deve receber um ponteiro para a struct Aluno como parâmetro e retornar a média das notas. 
+Crie uma função para exibir os dados de um aluno. A função deve receber um ponteiro para a struct Aluno como parâmetro e imprimir na tela todas as informações do aluno. 
+No programa principal, crie um array de structs Aluno para armazenar informações de um número específico de alunos (por exemplo, 3 alunos). 
+Utilize um loop para preencher as informações de cada aluno, calcular e exibir a média de suas notas, e mostrar todos os dados do aluno. 
+6)     Crie um programa em C que realiza a leitura e escrita de informações em arquivos de texto. O programa deve realizar as seguintes tarefas: 
+
+Defina uma struct Produto que contenha os seguintes campos: código (inteiro), nome (string) e preço (float). 
+Crie uma função para cadastrar um novo produto. A função deve solicitar ao usuário que insira as informações do produto (código, nome e preço) e escrever essas informações em um arquivo de texto chamado "produtos.txt". Cada novo produto deve ser adicionado em uma nova linha no arquivo. 
+Crie uma função para exibir todos os produtos cadastrados. A função deve ler o arquivo "produtos.txt" e imprimir na tela as informações de cada produto. 
+No programa principal, utilize um menu para permitir que o usuário escolha entre cadastrar um novo produto, exibir todos os produtos cadastrados ou sair do programa. 

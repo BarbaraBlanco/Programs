@@ -1,0 +1,27 @@
+O Bubble Sort é um algoritmo de ordenação que compara números dois a dois e os ordena. Basicamente, ele compara um número com o próximo e, caso o número atual seja maior que o próximo, ele troca os dois. Esse processo faz com que os números maiores sejam "empurrados" para uma extremidade do vetor, enquanto os menores são deslocados para a outra extremidade, conseguindo assim ordenar o vetor. 
+O nome Bubble vem justamente desse processo aonde um numero é "empurrado" como se fosse uma bolha até a sua posição adequada.
+
+Melhor caso: O(n) (quando o vetor já está ordenado).
+Pior caso: O(n²) (quando o vetor está em ordem inversa ou desordenado).
+Caso médio: Também O(n²), já que o algoritmo precisa realizar várias comparações e trocas para organizar o vetor.
+Embora o algoritmo seja simples, sua eficiência não é ideal para grandes conjuntos de dados, devido à sua complexidade quadrática.
+
+Primeira passagem:
+
+Comparar 5 e 1, como 5 > 1, troca-se os dois. O vetor fica: [1, 5, 4, 2, 8]
+Comparar 5 e 4, como 5 > 4, troca-se os dois. O vetor fica: [1, 4, 5, 2, 8]
+Comparar 5 e 2, como 5 > 2, troca-se os dois. O vetor fica: [1, 4, 2, 5, 8]
+Comparar 5 e 8, como 5 < 8, não ocorre troca. O vetor permanece: [1, 4, 2, 5, 8]
+Ao final dessa passagem, o número maior (8) foi "empurrado" para o final do vetor.
+
+Segunda passagem:
+
+Comparar 1 e 4, como 1 < 4, não ocorre troca. O vetor permanece: [1, 4, 2, 5, 8]
+Comparar 4 e 2, como 4 > 2, troca-se os dois. O vetor fica: [1, 2, 4, 5, 8]
+Comparar 4 e 5, como 4 < 5, não ocorre troca. O vetor permanece: [1, 2, 4, 5, 8]
+Ao final dessa passagem, o número 5 já está no seu lugar correto.
+
+Terceira passagem:
+
+Comparar 1 e 2, como 1 < 2, não ocorre troca. O vetor permanece: [1, 2, 4, 5, 8]
+Comparar 2 e 4, como 2 < 4, não ocorre troca. O vetor permanece: [1, 2, 4, 5, 8]
