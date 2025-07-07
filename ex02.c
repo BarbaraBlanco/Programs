@@ -1,40 +1,42 @@
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
+#include <string.h>
+#include <ctype.h>
 
-partir (int x, int p)
+int main()
 {
-    if ((x<0)||(p==0))
+    char nome[10][50], lista[50];
+    int opcao;
+    int i = 0;
+    int trava;
+    do
     {
-        return 0;
+        printf("Insira um nome: ");
+        scanf(" %s", nome[i]);
+        printf("Deseja inserir outro nome?\nDigite 1 para sim ou digite 2 para nao");
+        scanf("%d", &opcao);
+        if(i == 9)
+        {
+            printf("Lista de nomes completa!");
+        }
+        i++;
+    } while(opcao == 1  && i < 10);
+    printf("Digite o nome que deseja buscar: ");
+        scanf(" %s", lista);
+    for(int j = 0; j < 10; j++)
+    {
+        if(strcmp(nome[j], lista) == 0)
+        {
+            trava = 1;
+        }
+    }
+    if (trava == 1)
+    {
+        printf("O nome estah na lista!!");
     }
     else
-        if (x==0)
-        {
-            return 1;
-        }
-        else
-        {
-            return(partir (x-p, p) + partir (x,p-1));
-        }
-}
-
-main ()
-{
-    int x;
-    int q_particao;
-    int particao;
-
-    printf("Inteiro a particionar: ");
-    scanf("%d",&x);
-
-    printf("Quant. max de particoes: ");
-    scanf("%d",&q_particao);
-    q_particao = SHRT_MAX; // VALOR 32767
-
-    particao = partir (x, q_particao);
-
-    printf("\n\nResultado: %d",particao);
-
+    {
+        printf("O nome nao estah na lista!!");
+    }
+    return 0;
 }
